@@ -1,0 +1,543 @@
+{
+  "version": 1,
+  "domains": {
+    "technique": {
+      "label": "Indexabilité et technique",
+      "max": 25
+    },
+    "contenu": {
+      "label": "On-page et contenu",
+      "max": 25
+    },
+    "performance": {
+      "label": "Performance (Core Web Vitals)",
+      "max": 15
+    },
+    "geo": {
+      "label": "GEO / citabilité IA",
+      "max": 15
+    },
+    "donnees": {
+      "label": "Données structurées",
+      "max": 10
+    },
+    "local_intl": {
+      "label": "Local et international",
+      "max": 10
+    },
+    "mise_en_ligne": {
+      "label": "Webdesign et mise en ligne",
+      "max": 15
+    }
+  },
+  "weights": {
+    "critique": 3,
+    "important": 2,
+    "bonus": 1
+  },
+  "checks": [
+    {
+      "id": "tech.https_redirect",
+      "domain": "technique",
+      "weight": "critique",
+      "label": "HTTPS partout, http→https en une redirection 301"
+    },
+    {
+      "id": "tech.canonical_host",
+      "domain": "technique",
+      "weight": "important",
+      "label": "Une seule version du domaine (www ou non), l'autre redirigée"
+    },
+    {
+      "id": "tech.robots_ok",
+      "domain": "technique",
+      "weight": "critique",
+      "label": "robots.txt présent, ne bloque rien d'utile, référence le sitemap"
+    },
+    {
+      "id": "tech.sitemap_ok",
+      "domain": "technique",
+      "weight": "critique",
+      "label": "sitemap.xml valide, URLs canoniques en 200"
+    },
+    {
+      "id": "tech.no_noindex",
+      "domain": "technique",
+      "weight": "critique",
+      "label": "Aucun noindex involontaire (balise et en-tête X-Robots-Tag)"
+    },
+    {
+      "id": "tech.canonical_tag",
+      "domain": "technique",
+      "weight": "important",
+      "label": "Canonical absolu et auto-référent sur chaque page"
+    },
+    {
+      "id": "tech.no_redirect_chains",
+      "domain": "technique",
+      "weight": "important",
+      "label": "Pas de chaînes de redirections"
+    },
+    {
+      "id": "tech.no_broken_links",
+      "domain": "technique",
+      "weight": "important",
+      "label": "Pas de liens internes cassés (404)"
+    },
+    {
+      "id": "tech.content_in_html",
+      "domain": "technique",
+      "weight": "critique",
+      "label": "Contenu principal présent dans le HTML initial"
+    },
+    {
+      "id": "tech.indexed",
+      "domain": "technique",
+      "weight": "critique",
+      "label": "Pages clés indexées (Search Console ou requête site:)"
+    },
+    {
+      "id": "content.lang_attr",
+      "domain": "contenu",
+      "weight": "important",
+      "label": "<html lang> correct"
+    },
+    {
+      "id": "content.title",
+      "domain": "contenu",
+      "weight": "critique",
+      "label": "Title unique, ~50-60 caractères, mot-clé principal"
+    },
+    {
+      "id": "content.meta_description",
+      "domain": "contenu",
+      "weight": "important",
+      "label": "Meta description unique, ~140-160 caractères"
+    },
+    {
+      "id": "content.single_h1",
+      "domain": "contenu",
+      "weight": "important",
+      "label": "Un seul H1 descriptif"
+    },
+    {
+      "id": "content.heading_hierarchy",
+      "domain": "contenu",
+      "weight": "bonus",
+      "label": "Hiérarchie H2/H3 logique"
+    },
+    {
+      "id": "content.internal_links",
+      "domain": "contenu",
+      "weight": "bonus",
+      "label": "Liens internes avec ancres descriptives"
+    },
+    {
+      "id": "content.img_alt",
+      "domain": "contenu",
+      "weight": "important",
+      "label": "Images avec alt descriptif"
+    },
+    {
+      "id": "content.useful_unique",
+      "domain": "contenu",
+      "weight": "critique",
+      "label": "Contenu utile, spécifique, non dupliqué"
+    },
+    {
+      "id": "content.open_graph",
+      "domain": "contenu",
+      "weight": "bonus",
+      "label": "Open Graph complet (title, description, image 1200x630, url)"
+    },
+    {
+      "id": "content.twitter_card",
+      "domain": "contenu",
+      "weight": "bonus",
+      "label": "Twitter/X card"
+    },
+    {
+      "id": "content.trust_pages",
+      "domain": "contenu",
+      "weight": "important",
+      "label": "Contact, mentions légales, confidentialité visibles"
+    },
+    {
+      "id": "perf.lcp",
+      "domain": "performance",
+      "weight": "critique",
+      "label": "LCP < 2,5 s"
+    },
+    {
+      "id": "perf.inp",
+      "domain": "performance",
+      "weight": "important",
+      "label": "INP < 200 ms"
+    },
+    {
+      "id": "perf.cls",
+      "domain": "performance",
+      "weight": "important",
+      "label": "CLS < 0,1"
+    },
+    {
+      "id": "perf.image_weight",
+      "domain": "performance",
+      "weight": "important",
+      "label": "Images optimisées (formats modernes, poids, dimensions)"
+    },
+    {
+      "id": "perf.render_blocking",
+      "domain": "performance",
+      "weight": "bonus",
+      "label": "Peu de JS/CSS bloquant, polices en font-display: swap"
+    },
+    {
+      "id": "perf.compression_cache",
+      "domain": "performance",
+      "weight": "bonus",
+      "label": "Compression et cache long sur les assets"
+    },
+    {
+      "id": "geo.answer_blocks",
+      "domain": "geo",
+      "weight": "critique",
+      "label": "Passages autonomes de 40-150 mots qui répondent directement aux questions clés"
+    },
+    {
+      "id": "geo.question_headings",
+      "domain": "geo",
+      "weight": "important",
+      "label": "Titres explicites, sections par intention/question"
+    },
+    {
+      "id": "geo.fact_density",
+      "domain": "geo",
+      "weight": "important",
+      "label": "Faits vérifiables (noms, chiffres, tarifs, zones) plutôt que généralités"
+    },
+    {
+      "id": "geo.entity_consistency",
+      "domain": "geo",
+      "weight": "important",
+      "label": "Nom, activité, coordonnées cohérents entre site, schema et profils externes"
+    },
+    {
+      "id": "geo.ai_crawlers_allowed",
+      "domain": "geo",
+      "weight": "critique",
+      "label": "Robots IA de recherche non bloqués par erreur (robots.txt, pare-feu)"
+    },
+    {
+      "id": "geo.identifiable_author",
+      "domain": "geo",
+      "weight": "important",
+      "label": "Entreprise ou auteur identifiable (équipe, à propos, preuves)"
+    },
+    {
+      "id": "geo.freshness",
+      "domain": "geo",
+      "weight": "bonus",
+      "label": "Dates de mise à jour là où c'est pertinent"
+    },
+    {
+      "id": "geo.question_coverage",
+      "domain": "geo",
+      "weight": "important",
+      "label": "Couverture des questions de la matrice fan-out (>= 60 % Couvert)"
+    },
+    {
+      "id": "data.jsonld_present",
+      "domain": "donnees",
+      "weight": "important",
+      "label": "JSON-LD présent"
+    },
+    {
+      "id": "data.jsonld_valid",
+      "domain": "donnees",
+      "weight": "important",
+      "label": "JSON-LD valide (propriétés requises, types actifs)"
+    },
+    {
+      "id": "data.matches_content",
+      "domain": "donnees",
+      "weight": "critique",
+      "label": "Le balisage reflète le contenu visible, sans donnée inventée"
+    },
+    {
+      "id": "data.org_or_business",
+      "domain": "donnees",
+      "weight": "important",
+      "label": "Organization ou LocalBusiness (sous-type précis) renseigné"
+    },
+    {
+      "id": "data.breadcrumb_website",
+      "domain": "donnees",
+      "weight": "bonus",
+      "label": "WebSite / BreadcrumbList là où pertinent"
+    },
+    {
+      "id": "local.nap_consistent",
+      "domain": "local_intl",
+      "weight": "critique",
+      "applies": "local",
+      "label": "NAP identique site / JSON-LD / fiche Google"
+    },
+    {
+      "id": "local.localbusiness_schema",
+      "domain": "local_intl",
+      "weight": "important",
+      "applies": "local",
+      "label": "LocalBusiness complet (adresse, horaires, geo, areaServed)"
+    },
+    {
+      "id": "local.keywords_title_h1",
+      "domain": "local_intl",
+      "weight": "important",
+      "applies": "local",
+      "label": "Ville / zone dans title, H1 et introduction, sans bourrage"
+    },
+    {
+      "id": "local.contact_map_hours",
+      "domain": "local_intl",
+      "weight": "important",
+      "applies": "local",
+      "label": "Contact, plan, horaires, tel: cliquable"
+    },
+    {
+      "id": "local.gbp_aligned",
+      "domain": "local_intl",
+      "weight": "important",
+      "applies": "local",
+      "label": "Fiche Google Business Profile alignée avec le site"
+    },
+    {
+      "id": "local.genuine_reviews",
+      "domain": "local_intl",
+      "weight": "bonus",
+      "applies": "local",
+      "label": "Avis réels uniquement, aucun faux balisage d'avis"
+    },
+    {
+      "id": "local.gbp_complete",
+      "domain": "local_intl",
+      "weight": "critique",
+      "applies": "local",
+      "label": "Fiche Google Business Profile complète : catégorie principale juste, horaires, zone de service, description, photos, téléphone, lien du site"
+    },
+    {
+      "id": "local.apple_business",
+      "domain": "local_intl",
+      "weight": "important",
+      "applies": "local",
+      "label": "Établissement présent, correct et revendiqué sur Apple Maps (Apple Business Connect)"
+    },
+    {
+      "id": "local.bing_places",
+      "domain": "local_intl",
+      "weight": "bonus",
+      "applies": "local",
+      "label": "Fiche Bing Places à jour et cohérente avec le site"
+    },
+    {
+      "id": "local.reviews_managed",
+      "domain": "local_intl",
+      "weight": "important",
+      "applies": "local",
+      "label": "Avis récents et réponses du professionnel sur la fiche Google (volume et note suffisants pour le secteur)"
+    },
+    {
+      "id": "intl.hreflang_reciprocal",
+      "domain": "local_intl",
+      "weight": "critique",
+      "applies": "multilingue",
+      "label": "hreflang réciproque, avec auto-référence"
+    },
+    {
+      "id": "intl.hreflang_codes",
+      "domain": "local_intl",
+      "weight": "important",
+      "applies": "multilingue",
+      "label": "Codes valides et x-default"
+    },
+    {
+      "id": "intl.canonical_per_lang",
+      "domain": "local_intl",
+      "weight": "important",
+      "applies": "multilingue",
+      "label": "Canonical auto-référent dans chaque langue"
+    },
+    {
+      "id": "intl.lang_per_version",
+      "domain": "local_intl",
+      "weight": "important",
+      "applies": "multilingue",
+      "label": "lang et og:locale corrects par version"
+    },
+    {
+      "id": "intl.switcher_links",
+      "domain": "local_intl",
+      "weight": "bonus",
+      "applies": "multilingue",
+      "label": "Sélecteur de langue en vrais liens <a href>"
+    },
+    {
+      "id": "intl.sitemap_all_langs",
+      "domain": "local_intl",
+      "weight": "important",
+      "applies": "multilingue",
+      "label": "Toutes les langues dans le sitemap"
+    },
+    {
+      "id": "ux.responsive",
+      "domain": "mise_en_ligne",
+      "weight": "critique",
+      "label": "Responsive du mobile au desktop : pas de débordement horizontal, cibles tactiles ≥ 44 px"
+    },
+    {
+      "id": "ux.contrast_aa",
+      "domain": "mise_en_ligne",
+      "weight": "important",
+      "label": "Contraste AA respecté (texte lisible sur tous les fonds)"
+    },
+    {
+      "id": "ux.keyboard_focus",
+      "domain": "mise_en_ligne",
+      "weight": "important",
+      "label": "Navigation au clavier possible, focus visible"
+    },
+    {
+      "id": "ux.form_labels",
+      "domain": "mise_en_ligne",
+      "weight": "important",
+      "label": "Chaque champ de formulaire a une étiquette (label) associée"
+    },
+    {
+      "id": "ux.form_quality",
+      "domain": "mise_en_ligne",
+      "weight": "important",
+      "label": "Formulaires : validation, anti-spam et page de remerciement"
+    },
+    {
+      "id": "ux.single_cta",
+      "domain": "mise_en_ligne",
+      "weight": "important",
+      "label": "Un seul appel à l'action principal par page"
+    },
+    {
+      "id": "ux.cta_sticky_mobile",
+      "domain": "mise_en_ligne",
+      "weight": "bonus",
+      "label": "Barre d'action mobile (Appeler / Itinéraire) sans masquer le contenu"
+    },
+    {
+      "id": "ux.custom_404",
+      "domain": "mise_en_ligne",
+      "weight": "important",
+      "label": "Page 404 personnalisée (vrai code 404, lien de retour)"
+    },
+    {
+      "id": "ux.favicon",
+      "domain": "mise_en_ligne",
+      "weight": "bonus",
+      "label": "Favicon défini"
+    },
+    {
+      "id": "ux.no_tracking_embeds",
+      "domain": "mise_en_ligne",
+      "weight": "important",
+      "label": "Aucun traceur ni embed à cookies (YouTube, Maps interactif, réseaux) sans bannière"
+    },
+    {
+      "id": "ux.analytics",
+      "domain": "mise_en_ligne",
+      "weight": "bonus",
+      "label": "Mesure d'audience en place (de préférence sans cookie : Plausible, Umami)"
+    },
+    {
+      "id": "ux.social_links",
+      "domain": "mise_en_ligne",
+      "weight": "bonus",
+      "label": "Réseaux sociaux liés si le commerce en a"
+    },
+    {
+      "id": "content.no_meta_keywords",
+      "domain": "contenu",
+      "weight": "bonus",
+      "label": "Pas de balise meta keywords (obsolète)"
+    },
+    {
+      "id": "content.real_photos",
+      "domain": "contenu",
+      "weight": "important",
+      "label": "Photos réelles du lieu et des produits"
+    },
+    {
+      "id": "content.team_photo",
+      "domain": "contenu",
+      "weight": "bonus",
+      "label": "Photo de l'équipe ou du gérant (confiance, E-E-A-T)"
+    },
+    {
+      "id": "content.case_studies",
+      "domain": "contenu",
+      "weight": "bonus",
+      "label": "Réalisations / études de cas (selon métier)"
+    },
+    {
+      "id": "data.rich_results_test",
+      "domain": "donnees",
+      "weight": "important",
+      "label": "Données structurées validées par le test des résultats enrichis de Google"
+    },
+    {
+      "id": "local.local_vocabulary",
+      "domain": "local_intl",
+      "weight": "bonus",
+      "label": "Vocabulaire local dans les textes (ville, quartier, repères)",
+      "applies": "local"
+    },
+    {
+      "id": "setup.search_console",
+      "domain": "mise_en_ligne",
+      "weight": "important",
+      "label": "Google Search Console configurée et sitemap soumis"
+    },
+    {
+      "id": "setup.backlinks_local",
+      "domain": "mise_en_ligne",
+      "weight": "bonus",
+      "label": "Liens locaux obtenus naturellement (presse, partenaires), jamais achetés"
+    },
+    {
+      "id": "legal.cgv",
+      "domain": "mise_en_ligne",
+      "weight": "bonus",
+      "label": "CGV / CGU si vente ou prestation en ligne"
+    },
+    {
+      "id": "sec.no_exposed_files",
+      "domain": "mise_en_ligne",
+      "weight": "critique",
+      "label": "Aucun fichier sensible accessible (.env, .git)"
+    },
+    {
+      "id": "sec.repo_secrets",
+      "domain": "mise_en_ligne",
+      "weight": "critique",
+      "label": "Aucun secret dans le dépôt (.env ignoré, .env.example seul versionné)"
+    },
+    {
+      "id": "sec.deps_audit",
+      "domain": "mise_en_ligne",
+      "weight": "important",
+      "label": "Dépendances à jour (npm audit sans faille grave)"
+    },
+    {
+      "id": "sec.server_validation",
+      "domain": "mise_en_ligne",
+      "weight": "important",
+      "label": "Entrées de formulaire validées côté serveur, clés uniquement côté serveur"
+    }
+  ]
+}

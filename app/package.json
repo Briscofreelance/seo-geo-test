@@ -1,0 +1,26 @@
+{
+  "name": "seo-geo-test",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Free local SEO + GEO (AI search) audit and tracking app. Everything stays on your PC.",
+  "dependencies": {
+    "playwright-core": "1.56.0"
+  },
+  "license": "MIT",
+  "author": "Fabrice David (Brisco Freelance)",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node test/audit.test.mjs && node test/e2e.mjs"
+  },
+  "keywords": [
+    "seo",
+    "geo",
+    "ai-search",
+    "audit",
+    "local-first"
+  ]
+}

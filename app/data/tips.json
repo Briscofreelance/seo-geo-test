@@ -1,0 +1,541 @@
+{
+ "groups": {
+  "fiches": {
+   "fr": "Fiches locales et annuaires",
+   "en": "Local listings and directories"
+  },
+  "outils": {
+   "fr": "Comptes et outils gratuits",
+   "en": "Free accounts and tools"
+  },
+  "avis": {
+   "fr": "Avis et confiance",
+   "en": "Reviews and trust"
+  },
+  "liens": {
+   "fr": "Liens et notoriété",
+   "en": "Links and reputation"
+  },
+  "ia": {
+   "fr": "Présence pour les IA",
+   "en": "Presence for AIs"
+  },
+  "contenu": {
+   "fr": "Contenu et suivi",
+   "en": "Content and follow-up"
+  },
+  "social": {
+   "fr": "Réseaux sociaux",
+   "en": "Social networks"
+  }
+ },
+ "tips": [
+  {
+   "id": "gbp",
+   "group": "fiches",
+   "applies": "local",
+   "fr": {
+    "title": "Créer et compléter sa fiche Google Business Profile",
+    "what": "La fiche gratuite qui apparaît sur Google Maps et dans les recherches locales : nom, catégorie principale, horaires, zone de service, description, photos, téléphone, lien du site. Une vérification (courrier, appel ou vidéo) est demandée par Google.",
+    "why": "C'est le premier levier du référencement local : une fiche complète et vérifiée est affichée bien plus souvent qu'une fiche vide."
+   },
+   "en": {
+    "title": "Create and complete your Google Business Profile",
+    "what": "The free listing shown on Google Maps and in local searches: name, main category, hours, service area, description, photos, phone, website link. Google asks for a verification (mail, call or video).",
+    "why": "It is the first lever of local SEO: a complete, verified listing is shown far more often than an empty one."
+   },
+   "links": [
+    {
+     "fr": "Créer ma fiche",
+     "en": "Create my listing",
+     "url": "https://business.google.com/create"
+    },
+    {
+     "fr": "Aide Google Business Profile",
+     "en": "Google Business Profile help",
+     "url": "https://support.google.com/business"
+    }
+   ]
+  },
+  {
+   "id": "apple",
+   "group": "fiches",
+   "applies": "local",
+   "fr": {
+    "title": "Revendiquer sa fiche Apple Maps (Apple Business Connect)",
+    "what": "Apple Plans et Siri s'appuient sur cette fiche gratuite : à créer ou revendiquer, avec horaires, photos et site.",
+    "why": "Les utilisateurs d'iPhone cherchent souvent un commerce via Plans ou Siri, sans passer par Google."
+   },
+   "en": {
+    "title": "Claim your Apple Maps listing (Apple Business Connect)",
+    "what": "Apple Maps and Siri rely on this free listing: create or claim it, with hours, photos and website.",
+    "why": "iPhone users often look for a business through Maps or Siri, without going through Google."
+   },
+   "links": [
+    {
+     "fr": "Apple Business Connect",
+     "en": "Apple Business Connect",
+     "url": "https://business.apple.com/"
+    }
+   ]
+  },
+  {
+   "id": "bing_places",
+   "group": "fiches",
+   "applies": "local",
+   "fr": {
+    "title": "Mettre à jour sa fiche Bing Places",
+    "what": "Fiche gratuite de Microsoft, qui alimente Bing et Copilot, et sert de source à d'autres IA. Possibilité d'importer sa fiche Google.",
+    "why": "Bing est une source utilisée par plusieurs IA : une fiche cohérente aide à être citée correctement."
+   },
+   "en": {
+    "title": "Update your Bing Places listing",
+    "what": "Free Microsoft listing, feeding Bing and Copilot, and serving as a source for other AIs. You can import your Google listing.",
+    "why": "Bing is a source used by several AIs: a consistent listing helps you get cited correctly."
+   },
+   "links": [
+    {
+     "fr": "Bing Places",
+     "en": "Bing Places",
+     "url": "https://www.bing.com/forbusiness"
+    }
+   ]
+  },
+  {
+   "id": "annuaires",
+   "group": "fiches",
+   "applies": "local",
+   "fr": {
+    "title": "Être présent dans les annuaires généralistes sérieux",
+    "what": "Fiches gratuites sur quelques annuaires connus (PagesJaunes, Yelp, Mappy…), avec exactement le même nom, la même adresse et le même téléphone que sur ton site.",
+    "why": "Ces annuaires donnent des liens et des mentions, et servent de recoupement aux moteurs et aux IA. Mieux vaut 4 ou 5 fiches soignées que 50 annuaires douteux."
+   },
+   "en": {
+    "title": "Be listed in a few serious general directories",
+    "what": "Free listings on a few well-known directories (PagesJaunes, Yelp, Mappy…), with exactly the same name, address and phone as on your site.",
+    "why": "These directories provide links and mentions, and serve as cross-checks for engines and AIs. 4 or 5 well-kept listings beat 50 dubious directories."
+   },
+   "links": [
+    {
+     "fr": "PagesJaunes",
+     "en": "PagesJaunes (France)",
+     "url": "https://www.pagesjaunes.fr/"
+    },
+    {
+     "fr": "Yelp pour les pros",
+     "en": "Yelp for Business",
+     "url": "https://biz.yelp.com/"
+    },
+    {
+     "fr": "Mappy",
+     "en": "Mappy (France)",
+     "url": "https://www.mappy.com/"
+    }
+   ]
+  },
+  {
+   "id": "annuaires_metier",
+   "group": "fiches",
+   "applies": "local",
+   "fr": {
+    "title": "Figurer dans les annuaires de son métier et de sa région",
+    "what": "Annuaire de ta fédération, de ta chambre de métiers ou de commerce, de ta commune ou de ton office de tourisme, annuaires spécialisés de ta profession.",
+    "why": "Ces sites ont une vraie légitimité sur ton métier et ton territoire : un lien venant de là vaut plus que dix annuaires génériques."
+   },
+   "en": {
+    "title": "Appear in directories for your trade and region",
+    "what": "Your federation's directory, chamber of trades or commerce, town hall or tourist office, specialised directories for your profession.",
+    "why": "These sites have real authority on your trade and area: a link from them is worth more than ten generic directories."
+   },
+   "links": []
+  },
+  {
+   "id": "nap",
+   "group": "fiches",
+   "applies": "local",
+   "fr": {
+    "title": "Écrire son nom, adresse et téléphone de façon identique partout",
+    "what": "Un petit document avec le nom exact, l'adresse, le téléphone et le lien du site, à recopier tel quel sur le site, la fiche Google, Apple, Bing, les annuaires et les réseaux.",
+    "why": "Les moteurs et les IA recoupent ces informations pour être sûrs que c'est bien la même entreprise. Une variante (« rue » / « r. », ancien numéro) crée du doute."
+   },
+   "en": {
+    "title": "Write name, address and phone identically everywhere",
+    "what": "A small document with the exact name, address, phone and site link, copied as is onto the site, Google, Apple and Bing listings, directories and social profiles.",
+    "why": "Engines and AIs cross-check this information to be sure it is the same business. A variant (\"street\" / \"st.\", an old number) creates doubt."
+   },
+   "links": []
+  },
+  {
+   "id": "search_console",
+   "group": "outils",
+   "applies": null,
+   "fr": {
+    "title": "Ouvrir Google Search Console et y ajouter son site",
+    "what": "Outil gratuit de Google : indexation, requêtes qui amènent des visiteurs, clics, positions réelles. L'application peut importer son export.",
+    "why": "C'est la seule source fiable des positions réelles dans Google. Sans elle, on travaille à l'aveugle."
+   },
+   "en": {
+    "title": "Open Google Search Console and add your site",
+    "what": "Free Google tool: indexing, queries that bring visitors, clicks, real positions. The app can import its export.",
+    "why": "It is the only reliable source of real positions in Google. Without it, you work blind."
+   },
+   "links": [
+    {
+     "fr": "Search Console",
+     "en": "Search Console",
+     "url": "https://search.google.com/search-console"
+    }
+   ]
+  },
+  {
+   "id": "bing_webmaster",
+   "group": "outils",
+   "applies": null,
+   "fr": {
+    "title": "Ouvrir Bing Webmaster Tools et y ajouter son site",
+    "what": "Outil gratuit de Microsoft. On peut y importer son site depuis Search Console en quelques clics.",
+    "why": "Il alimente Bing, Copilot et d'autres moteurs, et montre combien de fois ton site est cité par Copilot."
+   },
+   "en": {
+    "title": "Open Bing Webmaster Tools and add your site",
+    "what": "Free Microsoft tool. You can import your site from Search Console in a few clicks.",
+    "why": "It feeds Bing, Copilot and other engines, and shows how often your site is cited by Copilot."
+   },
+   "links": [
+    {
+     "fr": "Bing Webmaster Tools",
+     "en": "Bing Webmaster Tools",
+     "url": "https://www.bing.com/webmasters"
+    }
+   ]
+  },
+  {
+   "id": "audience",
+   "group": "outils",
+   "applies": null,
+   "fr": {
+    "title": "Installer une mesure d'audience respectueuse",
+    "what": "Un compteur de visites sans cookie ni bandeau, comme Plausible ou Umami.",
+    "why": "Sans chiffres de visites, impossible de savoir si le référencement porte ses fruits."
+   },
+   "en": {
+    "title": "Install a privacy-friendly analytics tool",
+    "what": "A visit counter with no cookies or banner, like Plausible or Umami.",
+    "why": "Without visit figures, you cannot tell whether SEO is paying off."
+   },
+   "links": [
+    {
+     "fr": "Plausible",
+     "en": "Plausible",
+     "url": "https://plausible.io/"
+    },
+    {
+     "fr": "Umami",
+     "en": "Umami",
+     "url": "https://umami.is/"
+    }
+   ]
+  },
+  {
+   "id": "rich_results",
+   "group": "outils",
+   "applies": null,
+   "fr": {
+    "title": "Tester ses données structurées après chaque changement",
+    "what": "L'outil de Google qui lit les données structurées (JSON-LD) d'une page et signale les erreurs.",
+    "why": "Des données structurées fausses ou cassées peuvent être ignorées, voire pénalisées."
+   },
+   "en": {
+    "title": "Test structured data after each change",
+    "what": "Google's tool that reads a page's structured data (JSON-LD) and reports errors.",
+    "why": "Wrong or broken structured data can be ignored, or even penalised."
+   },
+   "links": [
+    {
+     "fr": "Test des résultats enrichis",
+     "en": "Rich Results Test",
+     "url": "https://search.google.com/test/rich-results"
+    },
+    {
+     "fr": "PageSpeed Insights",
+     "en": "PageSpeed Insights",
+     "url": "https://pagespeed.web.dev/"
+    }
+   ]
+  },
+  {
+   "id": "ask_reviews",
+   "group": "avis",
+   "applies": null,
+   "fr": {
+    "title": "Demander un avis après chaque prestation",
+    "what": "Un lien direct vers la fiche Google, envoyé par SMS ou mail juste après la prestation, ou un QR code au comptoir.",
+    "why": "Le volume et la fraîcheur des avis pèsent dans le classement local, et rassurent les futurs clients."
+   },
+   "en": {
+    "title": "Ask for a review after each job",
+    "what": "A direct link to the Google listing, sent by text or email right after the job, or a QR code at the counter.",
+    "why": "Review volume and freshness weigh in local ranking, and reassure future customers."
+   },
+   "links": [
+    {
+     "fr": "Aide : obtenir des avis",
+     "en": "Help: getting reviews",
+     "url": "https://support.google.com/business"
+    }
+   ]
+  },
+  {
+   "id": "reply_reviews",
+   "group": "avis",
+   "applies": null,
+   "fr": {
+    "title": "Répondre à tous les avis, y compris les négatifs",
+    "what": "Une réponse courte, polie et personnalisée, sous chaque avis, avec une proposition concrète en cas de problème.",
+    "why": "Les clients lisent les réponses, et les moteurs voient que la fiche est vivante."
+   },
+   "en": {
+    "title": "Reply to every review, including negative ones",
+    "what": "A short, polite, personalised reply under each review, with a concrete offer when there is a problem.",
+    "why": "Customers read the replies, and engines see that the listing is alive."
+   },
+   "links": []
+  },
+  {
+   "id": "no_fake",
+   "group": "avis",
+   "applies": null,
+   "fr": {
+    "title": "Ne jamais acheter ni inventer d'avis",
+    "what": "Aucun faux avis, aucun avis écrit par toi-même, aucune balise d'avis qui ne reflète pas de vrais avis visibles.",
+    "why": "C'est interdit, détecté de mieux en mieux, et peut faire supprimer la fiche ou le site des résultats."
+   },
+   "en": {
+    "title": "Never buy or invent reviews",
+    "what": "No fake review, none written by yourself, no review markup that does not reflect real visible reviews.",
+    "why": "It is forbidden, increasingly detected, and can get the listing or the site removed from results."
+   },
+   "links": []
+  },
+  {
+   "id": "proofs",
+   "group": "avis",
+   "applies": null,
+   "fr": {
+    "title": "Montrer des preuves réelles sur le site",
+    "what": "Vraies réalisations avec photos, labels, certifications, assurances, noms de clients qui acceptent d'être cités.",
+    "why": "Ces preuves rassurent les visiteurs et nourrissent les réponses des IA, qui préfèrent les faits vérifiables."
+   },
+   "en": {
+    "title": "Show real proof on the site",
+    "what": "Real projects with photos, labels, certifications, insurance, names of customers who agree to be quoted.",
+    "why": "This proof reassures visitors and feeds AI answers, which prefer verifiable facts."
+   },
+   "links": []
+  },
+  {
+   "id": "local_links",
+   "group": "liens",
+   "applies": "local",
+   "fr": {
+    "title": "Obtenir des liens de sites locaux",
+    "what": "Mairie, chambre de commerce ou des métiers, fédération professionnelle, office de tourisme, associations, clubs sportifs que tu sponsorises.",
+    "why": "Des liens venant de sites réels de ton territoire montrent à Google et aux IA que ton entreprise existe vraiment dans la zone."
+   },
+   "en": {
+    "title": "Get links from local websites",
+    "what": "Town hall, chamber of commerce or trades, professional federation, tourist office, associations, sports clubs you sponsor.",
+    "why": "Links from real sites in your area show Google and AIs that your business really exists there."
+   },
+   "links": []
+  },
+  {
+   "id": "partners",
+   "group": "liens",
+   "applies": null,
+   "fr": {
+    "title": "Échanger des témoignages avec fournisseurs et clients",
+    "what": "Propose un court témoignage à un fournisseur ou à un client : il le publie avec un lien vers ton site, et inversement.",
+    "why": "Ce sont des liens naturels et utiles, difficiles à obtenir autrement."
+   },
+   "en": {
+    "title": "Exchange testimonials with suppliers and customers",
+    "what": "Offer a short testimonial to a supplier or customer: they publish it with a link to your site, and vice versa.",
+    "why": "These are natural, useful links that are hard to get otherwise."
+   },
+   "links": []
+  },
+  {
+   "id": "press",
+   "group": "liens",
+   "applies": null,
+   "fr": {
+    "title": "Se faire connaître de la presse locale",
+    "what": "Un communiqué court pour une ouverture, un anniversaire, un prix, une action locale, envoyé au journal ou au blog local.",
+    "why": "Un article de presse locale est une des sources que les IA citent le plus volontiers."
+   },
+   "en": {
+    "title": "Get known by the local press",
+    "what": "A short press release for an opening, anniversary, award or local action, sent to the local paper or blog.",
+    "why": "A local press article is one of the sources AIs most readily cite."
+   },
+   "links": []
+  },
+  {
+   "id": "name_everywhere",
+   "group": "ia",
+   "applies": null,
+   "fr": {
+    "title": "Utiliser le même nom d'entreprise partout",
+    "what": "Le nom exact, écrit de la même façon, sur le site, les fiches, les réseaux et les annuaires.",
+    "why": "Les IA te reconnaissent comme une entité unique si ton nom est cohérent. Une variante peut te faire passer pour deux entreprises."
+   },
+   "en": {
+    "title": "Use the same business name everywhere",
+    "what": "The exact name, written the same way, on the site, listings, social profiles and directories.",
+    "why": "AIs recognise you as a single entity if your name is consistent. A variant can make you look like two businesses."
+   },
+   "links": []
+  },
+  {
+   "id": "wikidata",
+   "group": "ia",
+   "applies": null,
+   "fr": {
+    "title": "Créer une fiche Wikidata si l'entreprise est notable",
+    "what": "Une fiche structurée sur Wikidata (la base de connaissances de Wikipédia), uniquement si l'entreprise ou la marque est connue et documentée par des sources indépendantes.",
+    "why": "Wikidata est une source de référence pour les moteurs et les IA. Inutile, voire refusé, pour une toute petite entreprise sans sources."
+   },
+   "en": {
+    "title": "Create a Wikidata entry if the business is notable",
+    "what": "A structured entry on Wikidata (Wikipedia's knowledge base), only if the business or brand is known and documented by independent sources.",
+    "why": "Wikidata is a reference source for engines and AIs. Pointless, even rejected, for a very small business with no sources."
+   },
+   "links": [
+    {
+     "fr": "Wikidata",
+     "en": "Wikidata",
+     "url": "https://www.wikidata.org/"
+    }
+   ]
+  },
+  {
+   "id": "forums",
+   "group": "ia",
+   "applies": null,
+   "fr": {
+    "title": "Répondre aux vraies questions des clients, avec son nom",
+    "what": "Sur ton site (FAQ, articles) et, si tu as le temps, sur les forums de ton métier, en répondant honnêtement et sans publicité déguisée.",
+    "why": "Les IA piochent dans les réponses de forum et les questions-réponses. Être la personne qui répond bien te rend citable."
+   },
+   "en": {
+    "title": "Answer real customer questions, under your own name",
+    "what": "On your site (FAQ, articles) and, if you have time, on forums for your trade, answering honestly and without disguised advertising.",
+    "why": "AIs draw from forum answers and Q&As. Being the person who answers well makes you citable."
+   },
+   "links": []
+  },
+  {
+   "id": "cited_sources",
+   "group": "ia",
+   "applies": null,
+   "fr": {
+    "title": "Repérer les sites que les IA citent dans ton secteur",
+    "what": "Pose tes questions types à Perplexity ou ChatGPT et note les sites cités à chaque fois (annuaires, médias, comparateurs) : ce sont ceux où être présent.",
+    "why": "Au lieu de deviner, tu vises les sources que les IA utilisent vraiment."
+   },
+   "en": {
+    "title": "Spot the sites AIs cite in your sector",
+    "what": "Ask your typical questions to Perplexity or ChatGPT and note the sites cited each time (directories, media, comparison sites): those are where to be present.",
+    "why": "Instead of guessing, you target the sources AIs really use."
+   },
+   "links": []
+  },
+  {
+   "id": "news",
+   "group": "contenu",
+   "applies": null,
+   "fr": {
+    "title": "Publier régulièrement une actualité ou une réalisation",
+    "what": "Une fois par mois suffit : un chantier terminé, une nouveauté, une réponse à une question fréquente.",
+    "why": "Un site qui vit est exploré plus souvent, et fournit de nouveaux contenus à citer."
+   },
+   "en": {
+    "title": "Publish news or a project regularly",
+    "what": "Once a month is enough: a finished job, something new, an answer to a frequent question.",
+    "why": "A living site is crawled more often and supplies new content to cite."
+   },
+   "links": []
+  },
+  {
+   "id": "gbp_weekly",
+   "group": "contenu",
+   "applies": "local",
+   "fr": {
+    "title": "Faire vivre sa fiche Google chaque semaine",
+    "what": "Ajouter des photos, une publication ou une offre, et mettre à jour les horaires exceptionnels (jours fériés, vacances).",
+    "why": "Une fiche active est mieux classée, et des horaires faux font perdre des clients."
+   },
+   "en": {
+    "title": "Keep your Google listing alive every week",
+    "what": "Add photos, a post or an offer, and update special hours (public holidays, vacations).",
+    "why": "An active listing ranks better, and wrong hours lose customers."
+   },
+   "links": []
+  },
+  {
+   "id": "monthly_review",
+   "group": "contenu",
+   "applies": null,
+   "fr": {
+    "title": "Faire le point une fois par mois",
+    "what": "Ouvrir Search Console (pages non indexées, requêtes qui progressent), puis relancer un audit ici et comparer avec le précédent.",
+    "why": "Les petits problèmes se règlent facilement tant qu'on les voit tôt."
+   },
+   "en": {
+    "title": "Do a monthly check-up",
+    "what": "Open Search Console (non-indexed pages, rising queries), then run an audit here and compare with the previous one.",
+    "why": "Small problems are easy to fix as long as you spot them early."
+   },
+   "links": []
+  },
+  {
+   "id": "rerun",
+   "group": "contenu",
+   "applies": null,
+   "fr": {
+    "title": "Relancer un audit après chaque grosse modification",
+    "what": "Refonte, nouvelle page, changement d'hébergeur ou de domaine : un nouvel audit, puis « Comparer avec le précédent ».",
+    "why": "Cela détecte tout de suite une régression (page bloquée, redirection cassée) avant qu'elle ne coûte des visites."
+   },
+   "en": {
+    "title": "Re-run an audit after every big change",
+    "what": "Redesign, new page, change of host or domain: a new audit, then \"Compare with the previous one\".",
+    "why": "It catches a regression right away (blocked page, broken redirect) before it costs visits."
+   },
+   "links": []
+  },
+  {
+   "id": "social",
+   "group": "social",
+   "applies": null,
+   "fr": {
+    "title": "Entretenir 1 ou 2 profils complets plutôt que tout",
+    "what": "Choisis la ou les plateformes où sont tes clients, avec nom, photo, description et lien vers le site identiques partout, et publie de temps en temps.",
+    "why": "Un profil abandonné donne une mauvaise image, et des profils cohérents aident à te reconnaître."
+   },
+   "en": {
+    "title": "Maintain 1 or 2 complete profiles rather than everything",
+    "what": "Pick the platform(s) where your customers are, with the same name, photo, description and site link everywhere, and post from time to time.",
+    "why": "An abandoned profile looks bad, and consistent profiles help engines recognise you."
+   },
+   "links": [
+    {
+     "fr": "Facebook pour les pros",
+     "en": "Facebook for business",
+     "url": "https://www.facebook.com/business"
+    }
+   ]
+  }
+ ]
+}

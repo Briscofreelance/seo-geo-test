@@ -1,0 +1,10 @@
+node_modules/
+app/node_modules/
+app/config.json
+app/config.json.tmp
+app/browser-profile/
+app/install.log
+reports/*
+!reports/.gitkeep
+.DS_Store
+Thumbs.db

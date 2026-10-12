@@ -1,0 +1,42 @@
+import { startFixture } from './fixture.mjs';
+import { server, listen } from '../server.mjs';
+const fx = await startFixture();
+const fxUrl = `http://127.0.0.1:${fx.address().port}/`;
+await new Promise((r) => { server.once('listening', r); listen(4199); });
+const base = 'http://127.0.0.1:4199';
+const post = (p, b) => fetch(base + '/api' + p, { method: 'POST', headers: { 'content-type': 'application/json', 'x-seolab': '1' }, body: JSON.stringify(b) }).then((r) => r.json());
+const { job } = await post('/audit', { url: fxUrl, local: true, city: 'Saint-Étienne', psi: false });
+let j; do { await new Promise((r) => setTimeout(r, 300)); j = await (await fetch(base + '/api/job/' + job)).json(); } while (j.status === 'running');
+console.log(j);
+const slug = j.slug, id = j.auditId;
+// sécurité
+console.log('POST sans en-tête :', (await fetch(base + '/api/audit', { method: 'POST', body: '{}' })).status);
+console.log('Mauvais Host :', (await fetch(base + '/api/sites', { headers: { host: 'evil.com' } }).catch((e) => ({ status: e.message }))).status);
+console.log('traversal :', (await fetch(base + '/..%2f..%2fserver.mjs')).status);
+// mesures
+await post('/query', { slug, kind: 'queries', text: 'plombier Saint-Étienne' });
+await post('/query', { slug, kind: 'queries', text: 'trouve-moi un plombier à Saint-Étienne', voice: true });
+await post('/query', { slug, kind: 'prompts', text: 'Quel plombier choisir à Saint-Étienne ?' });
+for (const [e, q, pos] of [['brave', 'q1', 10], ['bing', 'q1', null], ['google_maps', 'v1', 6]]) await post('/measure', { slug, id, kind: 'serp', data: { engine: e, query_id: q, position: pos, checked_top: 30, location: e === 'google_maps' ? 'Saint-Étienne centre' : '' } });
+await post('/measure', { slug, id, kind: 'ai', data: { engine: 'perplexity', prompt_id: 'p1', mentioned: false, cited: false, competitors: 'a.fr, b.fr' } });
+await post('/measure', { slug, id, kind: 'ai', data: { engine: 'chatgpt', prompt_id: 'p1', mentioned: true, rank_in_answer: 3, cited: true } });
+await post('/measure', { slug, id, kind: 'search', data: { clicks: 12, impressions: 900, avg_position: 31.2, indexed_pages: 3 } });
+await post('/measure', { slug, id, kind: 'local', data: { search_views: 140, calls: 9, directions: 14 } });
+await post('/decision', { slug, checkId: 'tech.sitemap_ok', status: 'validated' });
+await post('/decision', { slug, checkId: 'content.single_h1', status: 'refused' });
+// 2e audit simulé : même site, défauts corrigés en partie, positions meilleures
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { ROOT } from '../lib/store.mjs';
+const snap = JSON.parse(readFileSync(`${ROOT}/${slug}/${id}/snapshot.json`, 'utf8'));
+snap.date = '2026-10-26';
+snap.checks['tech.sitemap_ok'] = { status: 'pass' }; snap.checks['content.single_h1'] = { status: 'pass' }; snap.checks['tech.no_noindex'] = { status: 'pass' }; snap.checks['content.img_alt'] = { status: 'fail', evidence: 'régression simulée' }; snap.checks['content.img_alt'].status = 'fail';
+snap.checks['content.title'] = { status: 'pass' };
+snap.serp.runs.forEach((r) => { if (r.engine === 'brave') r.position = 6; if (r.engine === 'bing') r.position = 24; });
+snap.ai.runs.forEach((r) => { if (r.engine === 'perplexity') { r.mentioned = true; r.cited = true; r.rank_in_answer = 2; } });
+snap.search.gsc.clicks = 31; snap.search.gsc.avg_position = 22.5;
+mkdirSync(`${ROOT}/${slug}/2026-10-26`, { recursive: true }); writeFileSync(`${ROOT}/${slug}/2026-10-26/snapshot.json`, JSON.stringify(snap));
+const cmp = await (await fetch(`${base}/api/compare/${slug}/${id}/2026-10-26`)).json();
+console.log(JSON.stringify({ k: cmp.scores.constant, fixed: cmp.cats.fixed.length, regressed: cmp.cats.regressed.map((x) => x.id), serp: cmp.serp.map((s) => s.engine + ':' + s.trend), ai: cmp.ai.map((a) => a.engine + ':' + a.dMention), caveats: cmp.caveats }));
+console.log((await (await fetch(`${base}/api/prompt/${slug}/${id}?type=fix`)).json()).text.slice(0, 600));
+console.log('SLUG', slug, id);
+process.exit(0);
