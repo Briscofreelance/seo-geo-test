@@ -4,14 +4,14 @@ const MAX_BYTES = 2_000_000;
 
 export const isLocalHost = (host) => /^(localhost|127\.|0\.0\.0\.0|\[::1\])/.test(host) || /^\d+\.\d+\.\d+\.\d+$/.test(host.split(':')[0]);
 
-export async function fetchPage(url, { method = 'GET', timeout = 12000, maxRedirects = 6, wantBody = true } = {}) {
+export async function fetchPage(url, { method = 'GET', timeout = 12000, maxRedirects = 6, wantBody = true, userAgent } = {}) {
   const chain = [];
   let current = url;
   const t0 = Date.now();
   try {
     for (let i = 0; i <= maxRedirects; i++) {
       const res = await fetch(current, {
-        method, redirect: 'manual', headers: { 'user-agent': UA, accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.5', 'accept-language': 'fr,en;q=0.7' },
+        method, redirect: 'manual', headers: { 'user-agent': userAgent || UA, accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.5', 'accept-language': 'fr,en;q=0.7' },
         signal: AbortSignal.timeout(timeout),
       });
       const headers = Object.fromEntries([...res.headers.entries()].map(([k, v]) => [k.toLowerCase(), v]));

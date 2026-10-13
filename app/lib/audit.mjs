@@ -12,6 +12,14 @@ const isLocalType = (t) => t !== 'Service' && LOCAL_RE.test(t);
 const ORG_RE = /(Organization|Corporation|NGO)$/;
 const GENERIC_ANCHOR = /^(cliquez ici|ici|en savoir plus|lire la suite|voir plus|click here|read more|learn more|plus d.?infos?|more)$/i;
 const AI_SEARCH_BOTS = ['Googlebot', 'Bingbot', 'OAI-SearchBot', 'ChatGPT-User', 'PerplexityBot', 'Claude-SearchBot'];
+// Identifiants (user-agent) des robots IA de recherche, pour tester si le CDN ou le pare-feu les refuse
+const AI_PROBES = [
+  ['OAI-SearchBot', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; OAI-SearchBot/1.0; +https://openai.com/searchbot'],
+  ['ChatGPT-User', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; ChatGPT-User/1.0; +https://openai.com/bot'],
+  ['PerplexityBot', 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; PerplexityBot/1.0; +https://perplexity.ai/perplexitybot)'],
+  ['Claude-SearchBot', 'Mozilla/5.0 (compatible; Claude-SearchBot/1.0; +https://www.anthropic.com)'],
+];
+const CHALLENGE_RE = /cf-chl|Just a moment|Attention Required|_Incapsula_|Access Denied|captcha-delivery|px-captcha/i;
 const AI_TRAIN_BOTS = ['GPTBot', 'ClaudeBot', 'Google-Extended', 'CCBot', 'Applebot-Extended'];
 
 export function siteSlug(u) {
@@ -229,12 +237,25 @@ export async function runAudit(opts, progress = () => {}) {
 
   // ---------- GEO ----------
   progress('Lisibilité pour les IA', 84);
-  if (!robotsOk) set('geo.ai_crawlers_allowed', 'pass', 'pas de robots.txt : aucun robot bloqué');
-  else {
-    const blocked = AI_SEARCH_BOTS.filter((b) => robotBlocked(robots, b));
-    const trainBlocked = AI_TRAIN_BOTS.filter((b) => robotBlocked(robots, b));
-    set('geo.ai_crawlers_allowed', blocked.length ? 'fail' : 'pass', blocked.length ? `robots de recherche bloqués : ${blocked.join(', ')}` : trainBlocked.length ? `robots de recherche autorisés ; robots d'entraînement bloqués (choix possible) : ${trainBlocked.join(', ')}` : 'robots de recherche et d\'entraînement autorisés');
+  const robotsBlocked = robotsOk ? AI_SEARCH_BOTS.filter((b) => robotBlocked(robots, b)) : [];
+  const trainBlocked = robotsOk ? AI_TRAIN_BOTS.filter((b) => robotBlocked(robots, b)) : [];
+  // Test réel : le CDN ou le pare-feu peut refuser ces robots même si robots.txt les autorise
+  let cdnBlocked = [], cdnTested = false;
+  const baseOk = home.status >= 200 && home.status < 400 && !CHALLENGE_RE.test(home.body.slice(0, 4000));
+  if ((!local || opts.forceAiProbe) && baseOk) {
+    const probes = await pool(AI_PROBES, 4, async ([name, ua]) => {
+      const r = await fetchPage(homeFinal, { userAgent: ua, timeout: 10000 });
+      return { name, refused: [401, 403, 429, 451, 503].includes(r.status) || (r.status >= 200 && r.status < 300 && CHALLENGE_RE.test(r.body.slice(0, 4000))), unreachable: r.status === 0 };
+    });
+    cdnTested = probes.some((x) => !x.unreachable);
+    cdnBlocked = probes.filter((x) => x.refused).map((x) => x.name);
   }
+  const parts = [];
+  if (robotsBlocked.length) parts.push(`robots de recherche bloqués : ${robotsBlocked.join(', ')}`);
+  if (cdnBlocked.length) parts.push(`robots de recherche refusés par le CDN ou le pare-feu : ${cdnBlocked.join(', ')} (test avec leur identifiant ; à confirmer dans les réglages du CDN)`);
+  if (parts.length) set('geo.ai_crawlers_allowed', 'fail', parts.join(' ; '));
+  else if (!robotsOk) set('geo.ai_crawlers_allowed', 'pass', 'pas de robots.txt : aucun robot bloqué' + (cdnTested ? ' ; accès réel testé, aucun refus du CDN' : ''));
+  else set('geo.ai_crawlers_allowed', 'pass', (trainBlocked.length ? `robots de recherche autorisés ; robots d'entraînement bloqués (choix possible) : ${trainBlocked.join(', ')}` : 'robots de recherche et d\'entraînement autorisés') + (cdnTested ? ' ; accès réel testé, aucun refus du CDN' : ''));
   const answerBlocks = flat(html.map((p) => p.parsed.paragraphs)).filter((q) => q.words >= 40 && q.words <= 150).length;
   set('geo.answer_blocks', answerBlocks >= 3 ? 'pass' : 'fail', `heuristique : ${answerBlocks} paragraphe(s) autonome(s) de 40 à 150 mots`);
   const hs = flat(html.map((p) => p.parsed.h.filter((h) => h.level >= 2 && h.level <= 3)));
@@ -287,9 +308,16 @@ export async function runAudit(opts, progress = () => {}) {
     progress('Contrôles locaux', 94);
     const pagePhones = new Set([...tels.map((t) => digits(t.href.replace(/^tel:/i, ''))), ...((homeParsed.text.match(/(?:\+33|0)\s?[1-9](?:[\s.\-]?\d{2}){4}/g)) || []).map(digits)]);
     const schemaPhone = localNode?.telephone ? digits(localNode.telephone) : null;
-    if (!pagePhones.size) set('local.nap_consistent', 'fail', 'aucun numéro de téléphone détecté sur l\'accueil');
-    else if (schemaPhone && ![...pagePhones].some((p) => p.endsWith(schemaPhone.slice(-9)))) set('local.nap_consistent', 'fail', `téléphone du balisage (${localNode.telephone}) absent du texte et des liens tel:`);
-    else if (new Set([...pagePhones].map((p) => p.slice(-9))).size > 1) set('local.nap_consistent', 'fail', `plusieurs numéros différents sur l'accueil : ${list([...pagePhones])}`);
+    const problems = [];
+    const pageTxt = norm(homeParsed.text);
+    if (!pagePhones.size) problems.push('aucun numéro de téléphone détecté sur l\'accueil');
+    else if (schemaPhone && ![...pagePhones].some((p) => p.endsWith(schemaPhone.slice(-9)))) problems.push(`téléphone du balisage (${localNode.telephone}) absent du texte et des liens tel:`);
+    else if (new Set([...pagePhones].map((p) => p.slice(-9))).size > 1) problems.push(`plusieurs numéros différents sur l'accueil : ${list([...pagePhones])}`);
+    const schemaStreet = localNode?.address?.streetAddress;
+    if (localNode?.name && !pageTxt.includes(norm(localNode.name))) problems.push(`nom du balisage (${localNode.name}) absent du texte de l'accueil`);
+    if (schemaStreet && !pageTxt.includes(norm(schemaStreet))) problems.push(`adresse du balisage (${schemaStreet}) absente du texte de l'accueil`);
+    if (problems.length) set('local.nap_consistent', 'fail', problems.join(' ; '));
+    else if (localNode) set('local.nap_consistent', 'pass', `numéro, nom et adresse cohérents entre la page et le balisage : ${[...pagePhones][0]} (le contrôle avec la fiche Google reste à faire)`);
     else set('local.nap_consistent', 'pass', `numéro cohérent : ${[...pagePhones][0]} (le contrôle avec la fiche Google reste à faire)`);
     if (localNode) {
       const a = localNode.address || {};

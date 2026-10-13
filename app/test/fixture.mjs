@@ -2,9 +2,10 @@
 import http from 'node:http';
 const page = (title, body, head = '') => `<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>${title}</title>${head}</head><body>${body}</body></html>`;
 const ld = (o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`;
-export function startFixture(port = 0) {
+export function startFixture(port = 0, { blockAi = false } = {}) {
   const srv = http.createServer((req, res) => {
     const u = req.url.split('?')[0];
+    if (blockAi && /OAI-SearchBot|PerplexityBot/.test(req.headers['user-agent'] || '')) { res.writeHead(403, { 'content-type': 'text/html' }); return res.end('<title>Just a moment...</title>'); }
     const send = (code, type, body, h = {}) => { res.writeHead(code, { 'content-type': type, ...h }); res.end(body); };
     const base = `http://127.0.0.1:${srv.address().port}`;
     if (u === '/') return send(200, 'text/html', page('Plomberie Martin - plombier à Saint-Étienne',
